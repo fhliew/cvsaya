@@ -11,6 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="uploadphoto.js"></script>
         <script src="cvpagecontroller.js"></script>
+        <script src="Inputmanager.js"></script>
     </head>
     <body style="background-color : #12b5331a;">
 
@@ -25,6 +26,9 @@
         <div class="container px-4 py-5" style ="margin-top:<?= "".$mt?>px;z-index:0;">
             <div class="row gy-2" id="content-area">
                 @yield('content')
+            </div>
+            <div class="row gy-2" id="table">
+                @yield('table')
             </div>
         </div>
     </body>

@@ -6,7 +6,7 @@
         <label style="font-weight:bold;font-size:13px;">Pilih Tanggal</label>
         </div>
         <div class="col-12">
-            <input type="date" style="background:transparent; border:0;"  name="Tanggal"></input>
+            <input type="date" style="background:transparent; border:0;"  name="Tanggal"/>
         </div>
         <hr style="margin-top: 0px;">
     </div>
