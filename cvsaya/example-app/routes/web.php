@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Inputmanager;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,5 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/{page?}', [Pagecontroller::class, 'gotopage']);
+Route::get('/cv/{titel?}', [Pagecontroller::class, 'gotocvpage']);
 
+
+Route::post('input',[Inputmanager::class, 'inputdata']);
 ?>

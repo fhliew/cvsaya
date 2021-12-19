@@ -1,10 +1,10 @@
 <?php 
     $connection = new mysqli("151.106.99.2","u583537897_cvsaya","1q@J4EcZO","u583537897_beta");
     $GLOBALS['connection'] = $connection;
-    
-    gettables($_GET['pagetitle']);
+    //include_once "Connection.php";
+    gettable($title);//$_GET['pagetitle']);
 
-    function gettables($pagetitle){
+    function gettable($pagetitle){
         $table="";
         $idlogin = 454;//$_COOKIE['idlogin'];
         switch($pagetitle){
@@ -93,7 +93,7 @@
                             <th style =\"border-bottom: 1px solid black; text-align:center;\">Aksi</th>
                         </tr>
                     </thead>";
-                while ($r=mysqli_fetch_array($kualifikasi)){
+                    while ($r=mysqli_fetch_array($kualifikasi)){
                     $table .="
                     <tr>
                         <td class=\"cvtabletopbottransparent\">".$r['kualifikasi']."</td> 
@@ -102,6 +102,6 @@
                 } 
                 break;
             }
-            echo "".$table;
+            return "".$table;
     }
 ?>
