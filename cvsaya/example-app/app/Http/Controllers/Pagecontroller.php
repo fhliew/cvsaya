@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class Pagecontroller extends Controller
 {
+    public static function gettable($pagetitle){
+        include_once "cvpagetables.php";
+        return gettable($pagetitle);
+    }
     public static function getcvform($title){
         $form='';
         if($title === 'Pendidikan'){
@@ -164,7 +168,7 @@ class Pagecontroller extends Controller
                 text-align: left; height: 35px;\" class=\"form-select\" on>   
                     <option selected=\"selected\">".$title."</option>".$options."
                 </select>",
-            'table' => include "cvpagetables.php",
+            'table' => self::gettable($title),
             'topborderheight' =>120,
             'mt' => 100
         ]);

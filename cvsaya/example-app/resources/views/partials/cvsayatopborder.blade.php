@@ -9,9 +9,8 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="uploadphoto.js"></script>
-        <script src="cvpagecontroller.js"></script>
-        <script src="Inputmanager.js"></script>
+        <script src="{{asset('uploadphoto.js')}}"></script>
+        <script src="{{asset('cvpagecontroller.js')}}"></script>
     </head>
     <body style="background-color : #12b5331a;">
 
@@ -21,12 +20,12 @@
             </a>
             <?= $filter ?>
         </div>
-        
         @yield('resignimg')
         <div class="container px-4 py-5" style ="margin-top:<?= "".$mt?>px;z-index:0;">
             <div class="row gy-2" id="content-area">
                 @yield('content')
             </div>
+            @yield('form')
             <div class="row gy-2" id="table">
                 @yield('table')
             </div>
