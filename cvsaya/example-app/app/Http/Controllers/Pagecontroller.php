@@ -21,16 +21,16 @@ class Pagecontroller extends Controller
             ->first();
         $allagama = Agama::all();
         $agamaoptions='';
-        foreach($allagama as $a){
+        /*foreach($allagama as $a){
             if($a['agama'] !== $agama['agama']) {
                 $agamaoptions .= "<option value=\"".$a['IDagama']."\">".$a['agama']."</option>";
             }
-        }
-
-        return
+        }*/
+        return 
         '<div class="col-12">
             <div class="form-group">
                 <label>Nama</label>
+                <!--<span>{!!@error("nama"){{$message}}@enderror!!}</span>-->
                 <input type="text" value ='.$emp_data['nama'].'name="nama" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
                 <hr id="line">
             </div>

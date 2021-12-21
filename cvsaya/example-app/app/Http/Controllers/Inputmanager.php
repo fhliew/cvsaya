@@ -4,7 +4,8 @@
     use App\Http\Controllers\Pagecontroller;
     use App\Models\Employee;
     use App\Models\Employeedetail;
-    //use Carbon\Carbon;
+    use Illuminate\Support\Facades\Validator;
+
 
     class Inputmanager extends Controller{
        
@@ -53,26 +54,17 @@
         }
 
         public static function inputdataprofil(Request $req){
-            include_once "Connection.php";
             $idlogin = 644;
-            $input = $req->input();
-
-            $updateHeader =Employee::where('idlogin', $idlogin)->update([
-                'alamat' => $input['alamat'] ?? '',
-                'website' => $input['website'] ?? ''
+            $test = $req->validate([
+                'nama' => 'required',
+                'alamat' => 'required',
+                'website' => 'required',
+                'ttl' => 'required',
+                'tpl' => 'required',
+                'jk' => 'required',
+                'agama' => 'required'
             ]);
-
-            // if ($updateHeader) {
-                //var_dump($input['IdAgama']);
-                $updatedetail = EmployeeDetail::where('idlogin',$idlogin)->update([
-                    'ttl' =>  $input['ttl'] ?? '',//Carbon::parse($input['ttl']) ?? '',  
-                    'tpl' => $input['tpl'] ?? '',
-                    'jk' => $input['jk'] ?? '',
-                    'IdAgama' => $input['IdAgama'] ?? 0,
-                ]);
-                if($updatedetail) return back()->withErrors(['msg' => "Data tersimpan!!"]);
-            // }
-            return back()->withErrors(['msg' => "Data tidak tersimpan!!"]);           
+            return $req->input;      
         }
     }
     
