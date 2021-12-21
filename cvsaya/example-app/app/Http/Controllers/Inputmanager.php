@@ -2,7 +2,10 @@
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
     use App\Http\Controllers\Pagecontroller;
-    
+    use App\Models\Employee;
+    use App\Models\Employeedetail;
+    //use Carbon\Carbon;
+
     class Inputmanager extends Controller{
        
         public static function insertdatatodatabase($data){
@@ -43,12 +46,33 @@
                 $gaji_data=mysqli_query($_GLOBALS['connection'],"INSERT INTO `1keinginangaji` (idlogin,Previous,Current,Desired,Ulasan,kondisi) VALUES($idlogin,'".$input['Previous']."','".$input['Current']."','".$input['Desired']."','".$input['Ulasan']."','".$input['kondisi']."')");
 
                 if(mysqli_affected_rows($_GLOBALS['connection']) > 0) {
-                    //return back()->withErrors(['msg' => "Data Tersimpan!!"]);
-                    //return redirect('/pekerjaan')->withErrors(['msg' => "Data tersimpan!!"]);
-                    return redirect()->route('pekerjaan');
+                    return back()->withErrors(['msg' => "Data Tersimpan!!"]);
                 }
             }
-            return redirect('/pekerjaan')->withErrors(['msg' => "Data tidak tersimpan!!"]);
+            return back()->withErrors(['msg' => "Data tidak tersimpan!!"]);
+        }
+
+        public static function inputdataprofil(Request $req){
+            include_once "Connection.php";
+            $idlogin = 644;
+            $input = $req->input();
+
+            $updateHeader =Employee::where('idlogin', $idlogin)->update([
+                'alamat' => $input['alamat'] ?? '',
+                'website' => $input['website'] ?? ''
+            ]);
+
+            // if ($updateHeader) {
+                //var_dump($input['IdAgama']);
+                $updatedetail = EmployeeDetail::where('idlogin',$idlogin)->update([
+                    'ttl' =>  $input['ttl'] ?? '',//Carbon::parse($input['ttl']) ?? '',  
+                    'tpl' => $input['tpl'] ?? '',
+                    'jk' => $input['jk'] ?? '',
+                    'IdAgama' => $input['IdAgama'] ?? 0,
+                ]);
+                if($updatedetail) return back()->withErrors(['msg' => "Data tersimpan!!"]);
+            // }
+            return back()->withErrors(['msg' => "Data tidak tersimpan!!"]);           
         }
     }
     

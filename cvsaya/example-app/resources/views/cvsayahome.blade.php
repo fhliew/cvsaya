@@ -44,13 +44,11 @@
                             <div class="row">
                                 <div class="col-7">
                                     <input type="text" class="form-control" style="background-color:transparent !important;
-                                    border:none !important;" placeholder="Status">
-                                    </input>
+                                    border:none !important;" placeholder="Status"/>
                                 </div>
                                 <div class="col-5">
                                     <input type="text" class="form-control" style="background-color:transparent !important; text-align:right;
-                                    border:none !important; color:green; font-weight:bold;" value ="Active">
-                                    </input>
+                                    border:none !important; color:green; font-weight:bold;" value ="Active"/>
                                 </div>
                             </div>
                         </div> 

@@ -17,6 +17,7 @@ Route::get('/{page?}', [Pagecontroller::class, 'gotopage']);
 Route::get('/cv/{titel?}', [Pagecontroller::class, 'gotocvpage']);
 
 Route::post('/cv/input',[Inputmanager::class, 'inputdata']);
-Route::post('input',[Inputmanager::class, 'inputdatapekerjaan']);
+//Route::post('input',[Inputmanager::class, 'inputdatapekerjaan']);
+Route::post('input',[Inputmanager::class, 'inputdataprofil']);
 
 ?>
