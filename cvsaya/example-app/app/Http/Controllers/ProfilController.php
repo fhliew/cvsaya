@@ -4,17 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
-use App\Models\Employeedetail;
+use App\Models\EmployeeDetail;
 use App\Models\KeinginanGaji;
 
-class Profilcontroller extends Controller
+class ProfilController extends Controller
 {
     public static function show(){
         $idlogin = 644;
         
         return view('CvsayaProfil',[
             'title' => 'Profil',
-            'view' => 'CvsayaProfil',
             'topborderheight' => 79,
             'dataEmp'=> Employee::where('idlogin', $idlogin)
             ->first(),

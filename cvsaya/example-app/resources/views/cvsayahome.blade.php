@@ -100,7 +100,7 @@
                         </a>
                     </div>
                     <div class="col-3" id="homeicon"> 
-                        <a href=/cv/Pendidikan style="display:block;color:transparent;"> 
+                        <a href=/cv style="display:block;color:transparent;"> 
                             <div style ="background-color:white;border-radius: 10px;
                             padding-bottom: 25px; padding-top: 10px; padding-left: 20px; padding-right: 20px; margin-top: 20px;    box-shadow: 3px 3px 4px #c1c1c1;">a</div>
                             <label style="font-size: 10px; color:black;"> CV </label>

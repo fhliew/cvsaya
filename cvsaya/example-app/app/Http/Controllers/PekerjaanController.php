@@ -13,7 +13,6 @@ class PekerjaanController extends Controller
 
         return view('CvsayaPekerjaan',[
             'title' => 'Pekerjaan',
-            'view' => 'CvsayaPekerjaan',
             'topborderheight' => 79,
             'dataEmp'=>  Employee::where('idLogin', $idlogin)
             ->first(),
