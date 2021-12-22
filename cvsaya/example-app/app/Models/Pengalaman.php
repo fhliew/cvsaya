@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Pengalaman extends Model
 {
     use HasFactory;
-
     protected $table = '1employee';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'job',
-        'memimpin',
-        'inginposisi',
-        'profile',
-        'website'
+        'tahun' ,
+        'sampai' ,
+        'sebagai' ,
+        'perusahaan' ,
+        'gaji' ,
+        'jobdesk' ,
+        'resign' ,
+        'referensi' ,
+        'kondisi' 
     ];
-    protected $casts = [];
-
 }

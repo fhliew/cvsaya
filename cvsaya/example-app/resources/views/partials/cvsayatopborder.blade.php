@@ -18,17 +18,26 @@
             <div style="font-weight: bold; text-align: center; padding-top: 22px; color: white; font-size: 20px;"> <label id="top-border-title"><?= $title?></label></div>
             <a href="/" style="font-size: 21px; color: white;transform: scale(1, 1.5);float: left;margin-right:20px;margin-top:-36px;color: white;"><label>&#65308</label>
             </a>
-            <?= $filter ?>
+            <?php
+                $titles = ['Pendidikan','Pengalaman','Kualifikasi'];
+                $options ="";
+                foreach($titles as $t){
+                    if($t !== $title) $options .= "<option value=\"$t\"> $t </option>";
+                }
+                echo "<select name=\"pilihtemacv\" id=\"pilihtemacv\" style=\"border-radius: 10px;
+                    box-shadow: none !important; padding-left: 10px; padding-bottom:5px;
+                    font-size: 15px; width: 100%; font-style: normal; font-weight: normal; 
+                    text-align: left; height: 35px;\" class=\"form-select\" on>   
+                        <option selected=\"selected\">".$title."</option>".$options."
+                    </select>";
+            ?>
         </div>
         @yield('resignimg')
         <div class="container px-4 py-5" style ="margin-top:<?= "".$mt?>px;z-index:0;">
             <div class="row gy-2" id="content-area">
                 @yield('content')
             </div>
-            @yield('form')
-            <div class="row gy-2" id="table">
-                @yield('table')
-            </div>
+            @yield('table')
         </div>
     </body>
 </html>

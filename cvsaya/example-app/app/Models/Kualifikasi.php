@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Kualifikasi extends Model
 {
     use HasFactory;
 
@@ -14,12 +14,6 @@ class Employee extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'job',
-        'memimpin',
-        'inginposisi',
-        'profile',
-        'website'
+        'kualifikasi'
     ];
-    protected $casts = [];
-
 }

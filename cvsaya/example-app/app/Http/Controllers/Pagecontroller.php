@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Employee;
 use App\Models\Employeedetail;
 use App\Models\Agama;
-use App\Models\Gaji;
+use App\Models\KeinginanGaji;
 use App\Http\Controllers\Pagecontroller;
 use Illuminate\Http\Request;
 
@@ -27,110 +27,7 @@ class Pagecontroller extends Controller
             }
         }*/
         return 
-        '<div class="col-12">
-            <div class="form-group">
-                <label>Nama</label>
-                <!--<span>{!!@error("nama"){{$message}}@enderror!!}</span>-->
-                <input type="text" value ='.$emp_data['nama'].'name="nama" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Tanggal Lahir</label>
-                <input type="text" value ='.$emp_details['ttl'].' name="ttl" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Tempat Lahir</label>
-                <input type="text" value ='.$emp_details['tpl'].' name="tpl" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Gender</label>
-                <select name="jk" id="input_box" class="form-control border-top-0">
-                    <option disabled selected value ='.
-                    (($emp_details['jk'] !== null && !empty($emp_details['jk']))? $emp_details['jk']:null).'>'.(($emp_details['jk'] !== null)?$emp_details['jk'] :  "Pilih jenis Kelamin").'</option>
-                    <option value="cowok">Cowok</option>
-                    <option value="cewek">Cewek</option>
-                </select>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>NIK</label>
-                <input type="text" name="nik" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Alamat Tinggal (Sekarang)</label>
-                <input type="text" value ="'.$emp_data['alamat'].'" name="alamat" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Agama</label>
-                <select name="agama" id="input_box" class="form-control border-top-0">
-                    <option disabled selected value>'.((!empty($agama['agama']))? $agama['agama']:"Pilih Agama").'</option>
-                    '.$agamaoptions.'
-                </select>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Status Perkawinan</label>
-                <select name="status_perkawinan" id="input_box" class="form-control border-top-0">
-                    <option disabled selected value> Pilih Status Perkawinan </option>
-                    <option value="single">Single</option>
-                    <option value="menikah">Menikah</option>
-                </select>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Akun Instagram</label>
-                <input type="text" name="akun_instagram" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Akun Tik Tok</label>
-                <input type="text" name="akun_tiktok" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Akun Youtube</label>
-                <input type="text" name="akun_youtube" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Akun Facebook</label>
-                <input type="text" name="akun_facebook" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>
-        <div class="col-12">
-            <div class="form-group">
-                <label>Website Pribadi</label>
-                <input type="text" value = "'.$emp_data['website'].'" name="website" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
-                <hr id="line">
-            </div>
-        </div>';
+        '';
     }
 
     public static function getpekerjaanform(){
@@ -357,90 +254,81 @@ class Pagecontroller extends Controller
         }
         return $form;
     }
-    public static function gotocvpage($title){
-        $titles = ['Pendidikan','Pengalaman','Kualifikasi'];
-        $options ="";
-        foreach($titles as $t){
-            if($t !== $title) $options .= "<option value=\"$t\"> $t </option>";
-        }
-        return view('cvsayacv', [
-            'title' => $title,
-            'url' => 'cvsayacv',
-            'form'=> self::getcvform($title),
-            'filter' => "
-                <select name=\"pilihtemacv\" id=\"pilihtemacv\" style=\"border-radius: 10px;
-                box-shadow: none !important; padding-left: 10px; padding-bottom:5px;
-                font-size: 15px; width: 100%; font-style: normal; font-weight: normal; 
-                text-align: left; height: 35px;\" class=\"form-select\" on>   
-                    <option selected=\"selected\">".$title."</option>".$options."
-                </select>",
-            'table' => self::gettable($title),
-            'topborderheight' =>120,
-            'mt' => 100
-        ]);
-    }
 
     public static function gotopage($page=null){
         $pagedata = Pagecontroller::getpage($page);
-        return view($pagedata['url'],[
+        if($pagedata['title'] === 'Pekerjaan') var_dump($pagedata['data']);//['job']);
+        else{
+        return view($pagedata['view'],[
             'title' => $pagedata['title'],
-            'filter' => $pagedata['filter'],
-            'form' => $pagedata['form'],
             'topborderheight' => $pagedata['topborderheight'],
-            'mt' => $pagedata['mt']
-        ]);
+            'mt' => $pagedata['mt'],
+            'data'=>$pagedata['data']
+        ]);}
     }
 
     public static function getpage($page){
+        $idlogin = 644;
         $pagedata = [];
         $title = 'CVsaya';
-        $url = 'cvsayahome';
-        $filter= null;
+        $view = 'CvsayaHome';
         $topborderheight = 79;
         $mt = 67;
-        $form = null;
+        $data =[];
         switch($page){
-            case 'attendance':
-                $title = 'Attendance';
-                $url = 'cvsayaattendance';
-                break;
-            case 'permission':
-                $title = 'Permission';
-                $url = 'cvsayapermission';
-                break;
-            case 'resignation':
-                $title = 'Resignation';
-                $url = 'cvsayaresignation';
-                break;
-            case 'salary':
-                $title = 'Salary';
-                $url = 'cvsayasalary';
-                break;
-            case 'salarydetails':
-                $title = 'Salary Detail';
-                $url = 'cvsayasalarydetails';
-                break;
             case 'profil':
+                $emp_data = "";//Employee::keinginangaji();
                 $title = 'Profil';
-                $url = 'cvsayaprofil';
-                $form = self::getprofilform();
+                $view = 'CvsayaProfil';
+                var_dump($emp_data);
+                $data = array_merge($emp_data,$gaji_data);//array_push($emp_data,$gaji_data);
                 break;
             case 'dokumen':
                 $title = 'Dokumen';
-                $url = 'cvsayadokumen';
+                $view = 'CvsayaDokumen';
                 break;
             case 'pekerjaan':
+                $dataEmp = Employee::where('idLogin', $idlogin)
+                ->get()[0];    
+                $dataGaji = KeinginanGaji::where('idLogin', $idlogin)
+                ->get()[0];            
+                $data = array_merge([$dataEmp],[$dataGaji]);
                 $title = 'Pekerjaan';
-                $url = 'cvsayapekerjaan';
-                $form = self::getpekerjaanform();
+                $view = 'CvsayaPekerjaan';
+                break;
+            case 'pengalaman':
+                $topborderheight = 120;
+                $mt = 100;
+                $data = Pengalaman::where('idLogin', $idlogin)
+                    ->orderBy('id_employe', 'DESC')
+                    ->first();
+                $title = 'Pengalaman';
+                $view = 'CvsayaCv';
+                break;
+            case 'pendidikan':
+                $topborderheight = 120;
+                $mt = 100;
+                $data = Pendidikan::where('idLogin', $idlogin)
+                    ->orderBy('id_employe', 'DESC')
+                    ->first();
+                $title = 'Pendidikan';
+                $view = 'CvsayaCv';
+                break;
+            case 'kualifikasi':
+                $topborderheight = 120;
+                $mt = 100;
+                $data = Kualifikasi::where('idLogin', $idlogin)
+                    ->orderBy('id_employe', 'DESC')
+                    ->first();
+                $title = 'Kualifikasi';
+                $view = 'CvsayaCv';
                 break;
         }
         $pagedata=[
             'title' => $title,
-            'url' => $url,
-            'filter'=> $filter,
-            'form'=> $form,
+            'view' => $view,
             'topborderheight' => $topborderheight,
+            'data'=> $data,
             'mt' => $mt
         ];
         return $pagedata;

@@ -5,21 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Pendidikan extends Model
 {
     use HasFactory;
-
-    protected $table = '1employee';
+    protected $table = 'pendidikan';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'job',
-        'memimpin',
-        'inginposisi',
-        'profile',
-        'website'
+        'Tahun',
+        'sampai',
+        'pendidikan',
+        'asal'
     ];
-    protected $casts = [];
-
 }

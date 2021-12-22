@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Agama;
 
 class EmployeeDetail extends Model
 {
@@ -11,6 +12,9 @@ class EmployeeDetail extends Model
     protected $table = '1employeedetail';
     public $timestamps = false;
 
+    public function agama(){
+        $this->hasone(Agama::class);
+    }
 
     protected $fillable = [
         'ttl',

@@ -12,9 +12,13 @@ use App\Http\Controllers\Inputmanager;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [Pagecontroller::class, 'gotopage']);
+Route::get('/profil', [ProfilController::class, 'show']);
+Route::get('/pekerjaan', [PekerjaanController::class, 'show']);
 
-Route::get('/{page?}', [Pagecontroller::class, 'gotopage']);
-Route::get('/cv/{titel?}', [Pagecontroller::class, 'gotocvpage']);
+
+//Route::get('/{page?}', [Pagecontroller::class, 'gotopage']);
+Route::get('/cv/{page?}', [Pagecontroller::class, 'gotopage']);
 
 Route::post('/cv/input',[Inputmanager::class, 'inputdata']);
 Route::post('input',[Inputmanager::class, 'inputdatapekerjaan']);
