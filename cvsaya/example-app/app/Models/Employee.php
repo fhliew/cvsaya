@@ -14,6 +14,13 @@ class Employee extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'idlogin',
+        'ketposisi',
+        'website',
+        'gambar',
+        'TglPost',
+        'alamat',
+        'IDprovinces',
         'job',
         'memimpin',
         'inginposisi',

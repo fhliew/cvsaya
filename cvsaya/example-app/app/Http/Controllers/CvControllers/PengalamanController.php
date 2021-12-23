@@ -55,15 +55,15 @@ class PengalamanController extends Controller
         ]);
         if(!$validate->fails()){
             $employee = Pengalaman::create([
-                'idlogin'=>$input['idlogin'],
+                'idlogin'=>$idlogin,
                 'tahun'=> $input['tahun'],
                 'sampai'=>$input['sampai'],
                 'sebagai'=>$input['sebagai'],
                 'perusahaan'=>$input['perusahaan'],
                 'jobdesk'=>$input['jobdesk'],
                 'resign'=>$input['resign'],
-                'kategori'=>$input['kategori'],
-                'del'=>$input['del'],
+                'kategori'=> 0,
+                'del'=> 0,
                 'gaji'=>$input['gaji'],
                 'kondisi'=>$input['kondisi'],
                 'referensi'=>$input['referensi'],

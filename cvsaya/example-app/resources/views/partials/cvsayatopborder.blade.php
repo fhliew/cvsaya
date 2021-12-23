@@ -24,12 +24,14 @@
                 foreach($titles as $t){
                     if($t !== $title) $options .= "<option value=\"$t\"> $t </option>";
                 }
+                if($title ==='Pendidikan' || $title ==='Pengalaman' || $title ==='Kualifikasi'){
                 echo "<select name=\"pilihtemacv\" id=\"pilihtemacv\" style=\"border-radius: 10px;
                     box-shadow: none !important; padding-left: 10px; padding-bottom:5px;
                     font-size: 15px; width: 100%; font-style: normal; font-weight: normal; 
                     text-align: left; height: 35px;\" class=\"form-select\" on>   
                         <option selected=\"selected\">".$title."</option>".$options."
                     </select>";
+                }
             ?>
         </div>
         @yield('resignimg')

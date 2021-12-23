@@ -10,8 +10,10 @@ class KeinginanGaji extends Model
     use HasFactory;
 
     protected $table = '1keinginangaji';
+    public $timestamps = false;
 
     protected $fillable = [
+        'idlogin',
         'Previous',
         'Current',
         'Desired',

@@ -13,14 +13,17 @@ class Pengalaman extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'tahun' ,
-        'sampai' ,
-        'sebagai' ,
-        'perusahaan' ,
-        'gaji' ,
-        'jobdesk' ,
-        'resign' ,
-        'referensi' ,
-        'kondisi' 
+        'idlogin',
+        'tahun',
+        'sampai',
+        'sebagai',
+        'perusahaan',
+        'gaji',
+        'jobdesk',
+        'resign',
+        'referensi',
+        'kondisi',
+        'kategori',
+        'del' 
     ];
 }

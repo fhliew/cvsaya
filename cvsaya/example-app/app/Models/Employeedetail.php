@@ -15,12 +15,17 @@ class EmployeeDetail extends Model
     public function agama(){
         $this->hasone(Agama::class);
     }
-
+    
     protected $fillable = [
         'ttl',
         'tpl',
         'jk',
         'IdAgama',
-        'referensi'
+        'referensi',
+        'idlogin',
+        'alternatifNo',
+        'kategori',
+        'karirkerja',
+        'TglPost'
     ];
 }
