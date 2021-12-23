@@ -13,9 +13,14 @@ class Pendidikan extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'idlogin',
+        'del',
         'Tahun',
         'sampai',
         'pendidikan',
         'asal'
     ];
 }
+
+
+

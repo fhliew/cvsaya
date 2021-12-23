@@ -9,11 +9,14 @@ class Kualifikasi extends Model
 {
     use HasFactory;
 
-    protected $table = '1employee';
+    protected $table = '1kualifikasi';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'kualifikasi'
+        'idlogin',
+        'kualifikasi',
+        'TglPost',
+        'del'
     ];
 }

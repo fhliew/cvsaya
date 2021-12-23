@@ -1,5 +1,9 @@
 <?php
 namespace App\Http\Controllers;
+use App\Http\Controllers\CvControllers\KualifikasiController;
+use App\Http\Controllers\CvControllers\PendidikanController;
+use App\Http\Controllers\CvControllers\PengalamanController;
+use App\Http\Controllers\InformationsMasking;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Inputmanager;
 /*
@@ -22,14 +26,27 @@ Route::get('/', function(){
 });
 Route::get('/profil', [ProfilController::class, 'show']);
 Route::get('/pekerjaan', [PekerjaanController::class, 'show']);
-Route::get('/cv/{title?}', [CvController::class, 'show']);
+Route::get('/cv/pendidikan', [PendidikanController::class, 'show']);
+Route::get('/cv/pengalaman', [PengalamanController::class, 'show']);
+Route::get('/cv/kualifikasi', [KualifikasiController::class, 'show']);
 Route::get('/dokumen', [DokumenController::class, 'show']);
 
+//Route::get('/cv/pendidikan/aksi/{ik?}', [PendidikanController::class, 'edit']);
+//Route::get('/cv/pengalaman/aksi/{ik?}', [PengalamanController::class, 'edit']);
 
-Route::get('/cv/{page?}', [Pagecontroller::class, 'gotopage']);
+//cv kualifikasi
+Route::get('/cv/kualifikasi/aksi/{IDkualifikasi}', [KualifikasiController::class, 'goToedit']);
+Route::post('/cv/kualifikasi/edit/submit', [KualifikasiController::class, 'edit']);
+Route::post('/cv/kualifikasi/submit', [KualifikasiController::class, 'insert']);
 
-Route::post('/cv/input',[Inputmanager::class, 'inputdata']);
-Route::post('input',[Inputmanager::class, 'inputdatapekerjaan']);
-Route::post('/profil/input',[Inputmanager::class, 'inputdataprofil']);
+//cv Pendidikan
+Route::get('/cv/pendidikan/aksi/{idpendidikan}', [PendidikanController::class, 'goToedit']);
+Route::post('/cv/pendidikan/edit/submit', [PendidikanController::class, 'edit']);
+Route::post('/cv/pendidikan/submit', [PendidikanController::class, 'insert']);
+
+//cv Pengalaman
+Route::get('/cv/pengalaman/aksi/{idpengalaman}', [PengalamanController::class, 'goToedit']);
+Route::post('/cv/pengalaman/edit/submit', [PengalamanController::class, 'edit']);
+Route::post('/cv/pengalaman/submit', [PengalamanController::class, 'insert']);
 
 ?>
