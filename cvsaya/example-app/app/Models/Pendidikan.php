@@ -20,6 +20,9 @@ class Pendidikan extends Model
         'pendidikan',
         'asal'
     ];
+    protected $attributes = [
+        'del'=> 0
+    ];
 }
 
 

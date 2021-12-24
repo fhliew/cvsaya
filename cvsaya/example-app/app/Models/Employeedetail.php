@@ -11,6 +11,7 @@ class EmployeeDetail extends Model
     use HasFactory;
     protected $table = '1employeedetail';
     public $timestamps = false;
+    protected $primaryKey = 'idDetail';
 
     public function agama(){
         $this->hasone(Agama::class);
@@ -21,11 +22,13 @@ class EmployeeDetail extends Model
         'tpl',
         'jk',
         'IdAgama',
-        'referensi',
         'idlogin',
-        'alternatifNo',
-        'kategori',
-        'karirkerja',
-        'TglPost'
+    ];
+    
+    protected $attributes = [
+        'referensi'=>"",
+        'alternatifNo'=>0,
+        'kategori'=>0,
+        'karirkerja'=>"",
     ];
 }

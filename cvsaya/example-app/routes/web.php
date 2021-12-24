@@ -18,15 +18,10 @@ use App\Http\Controllers\Inputmanager;
 */
 
 //front page
-Route::get('/', function(){
-    return view('CvsayaHome',[
-        'title' => 'CvSaya',
-        'topborderheight' => 79,
-        'mt' => 67,
-        'data'=>[]
-    ]);
-});
+Route::get('/', [HomeController::class, 'show']);
+//dokumen
 Route::get('/dokumen', [DokumenController::class, 'show']);
+Route::post('/dokumen/submit', [DokumenController::class, 'insert']);
 
 //Profil
 Route::get('/profil', [ProfilController::class, 'show']);

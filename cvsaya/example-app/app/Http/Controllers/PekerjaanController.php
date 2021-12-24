@@ -10,13 +10,12 @@ class PekerjaanController extends Controller
 {
     public static function show(){
         $idlogin = 644;
-
         return view('CvsayaPekerjaan',[
             'title' => 'Pekerjaan',
             'topborderheight' => 79,
             'dataEmp'=>  Employee::where('idLogin', $idlogin)
             ->first(),
-            'dataGaji'=> KeinginanGaji::where('idLogin', $idlogin)
+            'dataGaji'=> KeinginanGaji::where('idlogin', $idlogin)
             ->first(),
             'mt' => 67
         ]);
@@ -36,52 +35,56 @@ class PekerjaanController extends Controller
         ]);
         return !$validate->fails();
     }
+
     public static function insert(Request $req){
         $idlogin = 644;
         $input = $req->input();
-        
         if(self::checkInput($input)) {
-            if(self::update($input)) return back()->withErrors(['msg' => "Record terupdate!!"]);
-            else{
-                $employee = Employee::create([
-                    'idlogin'=> $idlogin,
-                    'job'=> $input['job'],
-                    'ketposisi' => "whatever",
-                    'inginposisi'=>$input['inginposisi'],
-                    'memimpin'=>$input['memimpin'],
-                    'website'=>"Omg@omg.omg",
-                    'gambar'=>"sdfsdfsfsdfs",
-                    'alamat'=>"nowhere",
-                    'TglPost' => date("Y-m-d h:i:s"),
-                    'profile'=> $input['profile'],
-                    'IDprovinces'=> 0                
-                ]);
-                $keinginanGaji = KeinginanGaji::create([
-                    'idlogin'=> $idlogin,
-                    'Previous'=> $input['Previous'],
-                    'Current'=>$input['Current'],
-                    'Desired'=>$input['Desired'],
-                    'Ulasan'=> $input['Ulasan'],
-                    'kondisi'=> $input['kondisi']
-                ]);
-                if($employee->wasRecentlyCreated && $keinginanGaji->wasRecentlyCreated) return back()->withErrors(['msg' => "Record tersimpan!!"]);
-            }
+            $updateOrCreate = self::updateOrCreateEmployee($input) + self::updateOrCreateKeinginanGaji($input); 
+            if($updateOrCreate === 0) return back()->withErrors(['msg' => "Record tersimpan!!"]);       
+            else if($updateOrCreate > 0) return back()->withErrors(['msg' => "Record terupdate!!"]);
+            else return back()->withErrors(['msg' => "Error!!"]);       
         }
-        return back()->withErrors(['msg' => "Record tidak tersimpan!!"]);       
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
-
-    public static function update($input){
+   
+    public static function updateOrCreateEmployee($input){
         $idlogin = 644;
         if(Employee::where('idlogin',$idlogin)->count() > 0){
-                $employee = Employee::where(
-                    'idlogin', $idlogin
+            try {                  
+                Employee::where(
+                'idlogin', $idlogin
                 )->update([
                     'job'=> $input['job'],
                     'inginposisi'=>$input['inginposisi'],
                     'memimpin'=>$input['memimpin'],
                     'profile'=> $input['profile']
                 ]);
-                $keinginanGaji = KeinginanGaji::where(
+                return 1;
+            } catch(Exception $e){
+                return -2;
+            }
+        }
+        else{
+            date_default_timezone_set("Asia/Jakarta");
+            $employeeCreate = Employee::create([
+                'idlogin'=> $idlogin,
+                'job'=> $input['job'],
+                'inginposisi'=>$input['inginposisi'],
+                'memimpin'=>$input['memimpin'],
+                'TglPost' => date("Y-m-d h:i:s"),
+                'profile'=> $input['profile']
+            ]);
+            if(!$employeeCreate->wasRecentlyCreated) return -2;
+        }
+        return 0;
+    }
+
+    public static function updateOrCreateKeinginanGaji($input){
+        $idlogin = 644;
+        if(KeinginanGaji::where('idlogin',$idlogin)->count() > 0){
+            try{
+                KeinginanGaji::where(
                     'idlogin', $idlogin
                 )->update([
                     'Previous'=> $input['Previous'],
@@ -90,8 +93,23 @@ class PekerjaanController extends Controller
                     'Ulasan'=> $input['Ulasan'],
                     'kondisi'=> $input['kondisi']
                 ]);
-                return true;
+                return 1;
             }
-        return false;    
+            catch(Exception $e){
+                return -2;
+            }
+        }
+        else{
+            $keinginanGajiCreate = KeinginanGaji::create([
+                'idlogin'=> $idlogin,
+                'Previous'=> $input['Previous'],
+                'Current'=>$input['Current'],
+                'Desired'=>$input['Desired'],
+                'Ulasan'=> $input['Ulasan'],
+                'kondisi'=> $input['kondisi']
+            ]);
+            if(!$keinginanGajiCreate->wasRecentlyCreated) return -2;
+        }    
+        return 0;
     }
 }

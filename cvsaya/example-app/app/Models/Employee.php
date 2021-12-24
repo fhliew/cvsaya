@@ -10,7 +10,7 @@ class Employee extends Model
     use HasFactory;
 
     protected $table = '1employee';
-
+    protected $primaryKey = 'id_employe';
     public $timestamps = false;
 
     protected $fillable = [
@@ -29,4 +29,15 @@ class Employee extends Model
     ];
     protected $casts = [];
 
+    protected $attributes = [
+        'job'=> "",
+        'ketposisi' => "",
+        'inginposisi'=>"",
+        'memimpin'=> "", 
+        'gambar'=> "",
+        'profile'=> "",
+        'website'=>"",
+        'alamat'=>"",
+        'IDprovinces'=> 0  
+    ];
 }

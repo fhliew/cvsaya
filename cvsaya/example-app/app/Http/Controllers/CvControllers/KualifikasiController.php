@@ -51,15 +51,16 @@ class KualifikasiController extends Controller
             'kualifikasi' => 'required'
         ]);
         if(!$validate->fails()){
-            $employee = Kualifikasi::create([
+            date_default_timezone_set("Asia/Jakarta");
+            $kualifikasi = Kualifikasi::create([
                 'idlogin' => $idlogin, 
                 'kualifikasi' => $input['kualifikasi'],
                 'TglPost' => date("Y-m-d h:i:s"),
-                'del'=> 0
             ]);
-            return back()->withErrors(['msg' => "Record tersimpan!!"]);
+            if($kualifikasi->wasRecentlyCreated) return back()->withErrors(['msg' => "Record tersimpan!!"]);
+            else return back()->withErrors(['msg' => "Record tidak tersimpan!!"]);
         }
-        return $req->input;    
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
 
     public static function edit(Request $req){
@@ -72,13 +73,17 @@ class KualifikasiController extends Controller
         ]);
 
         if(!$validate->fails()){
-            $employee = Kualifikasi::where(
-                'IDkualifikasi', self::getIdkualifikasi($input['variables'])
-            )->update(
-                ['kualifikasi'=> $input['kualifikasi']]
-            );
-            return back()->withErrors(['msg' => "Record terupdate!!"]);
+            try{
+                Kualifikasi::where(
+                    'IDkualifikasi', self::getIdkualifikasi($input['variables'])
+                )->update(
+                    ['kualifikasi'=> $input['kualifikasi']]
+                );
+                return back()->withErrors(['msg' => "Record terupdate!!"]);
+            }catch(Exception $e){
+                return back()->withErrors(['msg' => "Record tidak terupdate!!"]);
+            }
         }
-        return $req->input;    
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
 }

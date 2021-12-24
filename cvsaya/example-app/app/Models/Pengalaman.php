@@ -26,4 +26,9 @@ class Pengalaman extends Model
         'kategori',
         'del' 
     ];
+
+    protected $attributes = [
+        'kategori'=> 0,
+        'del'=> 0
+    ];
 }

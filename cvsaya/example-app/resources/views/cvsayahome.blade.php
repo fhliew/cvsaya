@@ -25,16 +25,16 @@
             <div class="container px-4 py-3">
                 <div class="row">
                     <div class="col-4">
-                        <img src="image/yeji4.jpg"alt="logo" width="70" height="70" style="float:left; margin-left:15px;  border-radius: 5px;  object-fit: scale_down;">
+                        <img src=<?= ($dataDokumen !== null)? $dataDokumen['Gambar']: ""?>alt="logo" width="70" height="70" style="float:left; margin-left:15px;  border-radius: 5px;  object-fit: scale_down;">
                         </img>
                     </div>
                     <div class="col-8">
                         <div class="row">
                             <div class="col-12">
-                            <label class="home_usersname">Alex Lukas Graham<br></label>
+                            <label class="home_usersname"><?= $dataAdmin['nama_lengkap']?><br></label>
                             </div>
                             <div class="col-12">
-                            <label style="font-weight:normal;" class="home_userspos">IT Support</label>
+                            <label style="font-weight:normal;" class="home_userspos"><?=($dataEmp !== null)? $dataEmp['job']:"" ?></label>
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                                 </div>
                                 <div class="col-5">
                                     <input type="text" class="form-control" style="background-color:transparent !important; text-align:right;
-                                    border:none !important; color:green; font-weight:bold;" value ="Active"/>
+                                    border:none !important; color:green; font-weight:bold;" value ="<?= $dataAdmin['blokir']?>"/>
                                 </div>
                             </div>
                         </div> 

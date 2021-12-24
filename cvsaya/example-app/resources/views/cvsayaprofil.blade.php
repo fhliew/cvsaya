@@ -7,22 +7,26 @@
 @endif
 <form action="profil/submit" method="POST">
     @csrf
-    <?php //var_dump($dataAgama);?>
     <div class="row gy-2" id="content-area">
         <div class="col-12">
             <div class="form-group">
                 <label>Nama</label>
-                <input type="text" required value ="<?php //($dataEmp !== null)? $dataEmp['nama']:""?>" name="nama" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
+                <input type="text" required value ="<?= ($dataAdmin !== null)? $dataAdmin['nama_lengkap']:""?>" name="nama_lengkap" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
                 <hr id="line">
             </div>
         </div>
         <div class="col-12">
             <div class="form-group">
-                <label>Tanggal Lahir</label>
-                <input type="text" required value ="<?= ($dataEmpdetails !== null)? $dataEmpdetails['ttl']:""?>" name="ttl" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
+                <div class="col-12">
+                    <label>Tanggal Lahir</label>
+                </div>
+                <div class="col-12">
+                    <input type="date" required style="border: 0;background:transparent;" value="<?= ($dataEmpdetails !== null)? $dataEmpdetails['ttl']:"" ?>" name="ttl"/>
+                </div>
                 <hr id="line">
             </div>
         </div>
+
         <div class="col-12">
             <div class="form-group">
                 <label>Tempat Lahir</label>
@@ -45,7 +49,7 @@
         <div class="col-12">
             <div class="form-group">
                 <label>NIK</label>
-                <input type="text" required name="nik" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
+                <input type="text" required value ="<?= ($dataAdmin !== null)? $dataAdmin['id_ktp']:""?>" name="id_ktp" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
                 <hr id="line">
             </div>
         </div>

@@ -118,8 +118,8 @@ function readfile(input,loc){
     let result = reader.readAsDataURL(file);
     reader.onload=function(){
         let result = reader.result;
-        alert("reader result: "+result+" type: "+file.type);
-        alert("type: "+file.type);
+        //alert("reader result: "+result+" type: "+file.type);
+        //alert("type: "+file.type);
 
         processFile(result,file.type,loc);
     }

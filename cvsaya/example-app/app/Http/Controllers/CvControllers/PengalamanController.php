@@ -54,7 +54,7 @@ class PengalamanController extends Controller
 
         ]);
         if(!$validate->fails()){
-            $employee = Pengalaman::create([
+            $pengalaman = Pengalaman::create([
                 'idlogin'=>$idlogin,
                 'tahun'=> $input['tahun'],
                 'sampai'=>$input['sampai'],
@@ -62,15 +62,14 @@ class PengalamanController extends Controller
                 'perusahaan'=>$input['perusahaan'],
                 'jobdesk'=>$input['jobdesk'],
                 'resign'=>$input['resign'],
-                'kategori'=> 0,
-                'del'=> 0,
                 'gaji'=>$input['gaji'],
                 'kondisi'=>$input['kondisi'],
                 'referensi'=>$input['referensi'],
             ]);
-            return back()->withErrors(['msg' => "Record tersimpan!!"]);
+            if($pengalaman->wasRecentlyCreated) return back()->withErrors(['msg' => "Record tersimpan!!"]);
+            return back()->withErrors(['msg' => "Record tidak tersimpan!!"]);
         }
-        return $req->input;    
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
 
     public static function edit(Request $req){
@@ -90,23 +89,28 @@ class PengalamanController extends Controller
 
         ]);
         if(!$validate->fails()){
-            $employee = Pengalaman::where(
+            try{
+                Pengalaman::where(
                 'idpengalaman', self::getIdpengalaman($input['variables'])
-            )->update(
-                [
-                'tahun'=> $input['tahun'],
-                'sampai'=>$input['sampai'],
-                'sebagai'=>$input['sebagai'],
-                'perusahaan'=>$input['perusahaan'],
-                'gaji'=>$input['gaji'],
-                'jobdesk'=>$input['jobdesk'],
-                'resign'=>$input['resign'],
-                'referensi'=>$input['referensi'],
-                'kondisi'=>$input['kondisi'],
-                ]
-            );
-            return back()->withErrors(['msg' => "Record terupdate!!"]);
+                )->update(
+                    [
+                    'tahun'=> $input['tahun'],
+                    'sampai'=>$input['sampai'],
+                    'sebagai'=>$input['sebagai'],
+                    'perusahaan'=>$input['perusahaan'],
+                    'gaji'=>$input['gaji'],
+                    'jobdesk'=>$input['jobdesk'],
+                    'resign'=>$input['resign'],
+                    'referensi'=>$input['referensi'],
+                    'kondisi'=>$input['kondisi'],
+                    ]
+                );
+                return back()->withErrors(['msg' => "Record terupdate!!"]);
+            }
+            catch(Exception $e){
+                return back()->withErrors(['msg' => "Record tidak terupdate!!"]);
+            }
         }
-        return $req->input;    
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
 }

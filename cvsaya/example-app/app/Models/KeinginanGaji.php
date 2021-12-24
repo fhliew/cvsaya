@@ -11,6 +11,7 @@ class KeinginanGaji extends Model
 
     protected $table = '1keinginangaji';
     public $timestamps = false;
+    protected $primaryKey = 'idGaji';
 
     protected $fillable = [
         'idlogin',

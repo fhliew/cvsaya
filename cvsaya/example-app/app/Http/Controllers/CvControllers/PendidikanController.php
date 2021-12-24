@@ -49,17 +49,17 @@ class PendidikanController extends Controller
             'asal'=> 'required'
         ]);
         if(!$validate->fails()){
-            $employee = Pendidikan::create([
+            $pendidikan = Pendidikan::create([
                 'idlogin' => $idlogin, 
-                'del'=> 0,
                 'Tahun'=> $input['Tahun'],
                 'sampai'=>$input['sampai'],
                 'pendidikan'=>$input['pendidikan'],
                 'asal'=> $input['asal']
             ]);
-            return back()->withErrors(['msg' => "Record tersimpan!!"]);
+            if($pendidikan->wasRecentlyCreated) return back()->withErrors(['msg' => "Record tersimpan!!"]);
+            return back()->withErrors(['msg' => "Record tidak tersimpan!!"]);
         }
-        return $req->input;    
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
 
     public static function edit(Request $req){
@@ -73,19 +73,22 @@ class PendidikanController extends Controller
             'asal' =>'required'
         ]);
         if(!$validate->fails()){
-            $employee = Pendidikan::where(
-                'idpendidikan', self::getIdpendidikan($input['variables'])
-            )->update(
-                [
-                'Tahun'=> $input['Tahun'],
-                'sampai'=>$input['sampai'],
-                'pendidikan'=>$input['pendidikan'],
-                'asal' =>$input['asal']
-                ]
-            );
-            return back()->withErrors(['msg' => "Record terupdate!!"]);
+            try{
+                Pendidikan::where('idpendidikan', self::getIdpendidikan($input['variables']))->update(
+                    [
+                    'Tahun'=> $input['Tahun'],
+                    'sampai'=>$input['sampai'],
+                    'pendidikan'=>$input['pendidikan'],
+                    'asal' =>$input['asal']
+                    ]
+                );
+                return back()->withErrors(['msg' => "Record terupdate!!"]);
+            }
+            catch(Exception $e){
+                return back()->withErrors(['msg' => "Record tidak terupdate!!"]);
+            }
         }
-        return $req->input;    
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
 
 }

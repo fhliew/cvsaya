@@ -19,4 +19,7 @@ class Kualifikasi extends Model
         'TglPost',
         'del'
     ];
+    protected $attributes = [
+        'del'=> 0
+    ];
 }

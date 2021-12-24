@@ -1,7 +1,7 @@
 @extends('partials/cvsayatopborder')
 @section('content')
 @if($errors->any())
-    "<?= "<script> alert('".$errors->first()."')</script>"?>"
+    <?= "<script> alert('".$errors->first()."')</script>"?>
 @endif
 
 <form action="/pekerjaan/submit" method="POST">

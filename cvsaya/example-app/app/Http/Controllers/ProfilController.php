@@ -6,6 +6,7 @@ use App\Models\Employee;
 use App\Models\EmployeeDetail;
 use App\Models\KeinginanGaji;
 use App\Models\Agama;
+use App\Models\Administrator;
 use Illuminate\Support\Facades\Validator;
 
 class ProfilController extends Controller
@@ -19,13 +20,15 @@ class ProfilController extends Controller
             'dataEmp'=> Employee::where('idlogin', $idlogin)->first(),
             'dataEmpdetails'=> $dataEmpdet,
             'dataGaji'=> KeinginanGaji::where('idlogin', $idlogin)->first(),
+            'dataAdmin'=> Administrator::where('idlogin', $idlogin)->first(),
             'dataAgama'=> Agama::all(),
             'mt' => 67
         ]);
     }
     public static function checkInput($input){
         $validate = Validator::make($input,[
-            'nama'=> 'required',
+            'nama_lengkap'=> 'required',
+            'id_ktp'=> 'required',
             'ttl'=>'required',
             'tpl'=>'required',
             'jk'=> 'required',
@@ -35,56 +38,67 @@ class ProfilController extends Controller
         ]);
         return !$validate->fails();
     }
+
     public static function insert(Request $req){
         $idlogin = 644;
         $input = $req->input();
-        var_dump($input);
         if(self::checkInput($input)) {
-            var_dump("valid input");
-            if(self::update($input)) return back()->withErrors(['msg' => "Record terupdate!!"]);
-            else{
-                $employee = Employee::create([
-                    'idlogin'=> $idlogin,
-                    'job'=> "create job?",
-                    'ketposisi' => "whatever",
-                    'inginposisi'=>"ingin pos?",
-                    'memimpin'=>"memimpin?",
-                    'website'=>"Omg@omg.omg",
-                    'gambar'=>"sdfsdfsfsdfs",
-                    'alamat'=>$input['alamat'],
-                    'TglPost' => date("Y-m-d h:i:s"),
-                    'profile'=> "profile?",
-                    'IDprovinces'=> 0                
-                ]);
-                $employeedet = EmployeeDetail::create([
-                    'idlogin'=> $idlogin,
-                    'ttl'=> $input['ttl'],
-                    'tpl'=>$input['tpl'],
-                    'jk'=>$input['jk'],
-                    'IdAgama'=> $input['IdAgama'],
-                    'alternatifNo'=>"nomor?",
-                    'kategori'=>1,
-                    'referensi'=> "referensi?",
-                    'karirkerja'=> "1",
-                ]);
-
-                if($employee->wasRecentlyCreated && $employeedet->wasRecentlyCreated) return back()->withErrors(['msg' => "Record tersimpan!!"]);
-            }
+            $updateOrCreate = self::updateOrCreateEmployee($input) + self::updateOrCreateEmployeeDetail($input) + self::updateAdmin($input); 
+            if($updateOrCreate === 0) return back()->withErrors(['msg' => "Record tersimpan!!"]);       
+            else if($updateOrCreate > 0) return back()->withErrors(['msg' => "Record terupdate!!"]);       
+            else return back()->withErrors(['msg' => "Error!!"]);  
         }
-        return back()->withErrors(['msg' => "Record tidak tersimpan!!"]);       
+       // return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
+    }
+    
+    public static function updateAdmin($input){
+        $idlogin = 644;
+        try{
+            $admin = Administrator::find($idlogin);
+            $adminUpdate = $admin->update([
+                'nama_lengkap'=> $input['nama_lengkap'], 
+                'id_ktp'=>$input['id_ktp']
+            ]);
+        }
+        catch(Exception $e){
+            return -3;
+        }
+        return 0;
     }
 
-    public static function update($input){
+    public static function updateOrCreateEmployee($input){
         $idlogin = 644;
-        if(EmployeeDetail::where('idlogin',$idlogin)->count() > 0){
-                $employee = Employee::where(
+        if(Employee::where('idlogin',$idlogin)->count() > 0){
+            try{
+                $employeeUpdate = Employee::where(
                     'idlogin', $idlogin
                 )->update([
                     'alamat'=> $input['alamat'],
                     'website'=> $input['website']
                 ]);
+                return 1;
+            }
+            catch(Exception $e){
+                return -3;
+            }
+        }
+        else{
+            $employeeCreate = Employee::create([
+                'idlogin'=> $idlogin,
+                'website'=> $input['website'], 
+                'alamat'=>$input['alamat'], 
+                'TglPost' => date("Y-m-d h:i:s"),
+            ]);
+            if(!$employeeCreate->wasRecentlyCreated) return -3;
+        }
+        return 0;
+    }
 
-                $employeedet = EmployeeDetail::where(
+    public static function updateOrCreateEmployeeDetail($input){
+        $idlogin = 644;
+        if(EmployeeDetail::where('idlogin',$idlogin)->count() > 0){
+            try{
+                EmployeeDetail::where(
                     'idlogin', $idlogin
                 )->update([
                     'ttl'=> $input['ttl'],
@@ -92,8 +106,22 @@ class ProfilController extends Controller
                     'jk'=>$input['jk'],
                     'IdAgama'=> $input['IdAgama']
                 ]);
-                return true;
+                return 1;
             }
-        return false;    
+            catch(Exception $e){
+                return -3;
+            }
+        }
+        else{
+            $employeeDetailCreate = EmployeeDetail::create([
+                'idlogin'=> $idlogin,
+                'ttl'=> $input['ttl'],
+                'tpl'=>$input['tpl'],
+                'jk'=>$input['jk'],
+                'IdAgama'=> $input['IdAgama']
+            ]);
+            if(!$employeeDetailCreate->wasRecentlyCreated) return -3;
+        }    
+        return 0;
     }
 }
