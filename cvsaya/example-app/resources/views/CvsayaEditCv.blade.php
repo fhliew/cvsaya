@@ -12,7 +12,7 @@
     </head>
     <body style="background-color : #12b5331a;">
 
-        <div class="col-sm-12" id="top-border"style="width:100%;height: <?= $topborderheight?>px; position:fixed; top:0; background-color:#12B533;z-index:1">
+        <div class="col-sm-12" id="top-border"style="width:100%;height: <?= $topBorderHeight?>px; position:fixed; top:0; background-color:#12B533;z-index:1">
             <div style="font-weight: bold; text-align: center; padding-top: 22px; color: white; font-size: 20px;"> <label id="top-border-title"><?= $title?></label></div>
             <a href="/cv/<?=strtolower($title)?>" style="font-size: 21px; color: white;transform: scale(1, 1.5);float: left;margin-right:20px;margin-top:-36px;color: white;"><label>&#65308</label>
             </a>
@@ -50,7 +50,7 @@
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Kelebihan/Hobi/Keahlian</label>
-                                            <input type=\"text\" name=\"kualifikasi\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataKualifikasi[0]['kualifikasi']."\"/>
+                                            <input type=\"text\" name=\"kualifikasi\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listKualifikasi[0]['kualifikasi']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
@@ -63,14 +63,14 @@
                                     <div class=\"col-6\">
                                         <div class=\"form-group\">
                                             <label>Tanggal Masuk</label>
-                                            <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"tahun\" value=\"".$dataPengalaman[0]['tahun']."\"/>
+                                            <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"tahun\" value=\"".$listPengalaman[0]['tahun']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-6\">
                                         <div class=\"form-group\">
                                             <label>Tanggal Selesai</label>
-                                            <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"sampai\" value=\"".$dataPengalaman[0]['sampai']."\" />
+                                            <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"sampai\" value=\"".$listPengalaman[0]['sampai']."\" />
                                             <hr id=\"line\">
                                         </div>
                                     </div>
@@ -78,49 +78,49 @@
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Jabatan/Posisi</label>
-                                            <input type=\"text\" name=\"sebagai\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['sebagai']."\"/>
+                                            <input type=\"text\" name=\"sebagai\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['sebagai']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Instansi</label>
-                                            <input type=\"text\" name=\"perusahaan\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['perusahaan']."\"/>
+                                            <input type=\"text\" name=\"perusahaan\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['perusahaan']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Gaji Pokok</label>
-                                            <input type=\"text\" name=\"gaji\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['gaji']."\"/>
+                                            <input type=\"text\" name=\"gaji\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['gaji']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Jobdesk/Rincian pekerjaan</label>
-                                            <input type=\"text\" name=\"jobdesk\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['jobdesk']."\"/>
+                                            <input type=\"text\" name=\"jobdesk\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['jobdesk']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Alasan keluar/Resign</label>
-                                            <input type=\"text\" name=\"resign\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['resign']."\"/>
+                                            <input type=\"text\" name=\"resign\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['resign']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Nomor Referensi/Email</label>
-                                            <input type=\"text\" name=\"referensi\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['referensi']."\"/>
+                                            <input type=\"text\" name=\"referensi\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['referensi']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Kondisi Kerja</label>
-                                            <input type=\"text\" name=\"kondisi\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPengalaman[0]['kondisi']."\"/>
+                                            <input type=\"text\" name=\"kondisi\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPengalaman[0]['kondisi']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
@@ -135,7 +135,7 @@
                                                 <label>Tanggal Masuk</label>
                                             </div>
                                             <div class=\"col-12\">
-                                                <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"Tahun\" value=\"".$dataPendidikan[0]['Tahun']."\" />
+                                                <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"Tahun\" value=\"".$listPendidikan[0]['Tahun']."\" />
                                             </div>
                                             <hr id=\"line\">
                                         </div>
@@ -146,7 +146,7 @@
                                                 <label>Tanggal Selesai</label>
                                             </div>
                                             <div class=\"col-12\">
-                                                <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"sampai\" value=\"".$dataPendidikan[0]['sampai']."\" />
+                                                <input type=\"date\" style=\"border: 0;background:transparent;\" name=\"sampai\" value=\"".$listPendidikan[0]['sampai']."\" />
                                             </div>
                                             <hr id=\"line\">
                                         </div>
@@ -154,14 +154,14 @@
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Jenjang</label>
-                                            <input type=\"text\" name=\"pendidikan\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPendidikan[0]['pendidikan']."\"/>
+                                            <input type=\"text\" name=\"pendidikan\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPendidikan[0]['pendidikan']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>
                                     <div class=\"col-12\">
                                         <div class=\"form-group\">
                                             <label>Instansi</label>
-                                            <input type=\"text\" name=\"asal\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$dataPendidikan[0]['asal']."\"/>
+                                            <input type=\"text\" name=\"asal\" id=\"input_box\" class=\"form-control border-top-0\" placeholder=\"Isi disini\" value=\"".$listPendidikan[0]['asal']."\"/>
                                             <hr id=\"line\">
                                         </div>
                                     </div>

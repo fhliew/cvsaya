@@ -21,7 +21,7 @@
                     <label>Tanggal Lahir</label>
                 </div>
                 <div class="col-12">
-                    <input type="date" required style="border: 0;background:transparent;" value="<?= ($dataEmpdetails !== null)? $dataEmpdetails['ttl']:"" ?>" name="ttl"/>
+                    <input type="date" required style="border: 0;background:transparent;" value="<?= ($dataEmpDetails !== null)? $dataEmpDetails['ttl']:"" ?>" name="ttl"/>
                 </div>
                 <hr id="line">
             </div>
@@ -30,7 +30,7 @@
         <div class="col-12">
             <div class="form-group">
                 <label>Tempat Lahir</label>
-                <input type="text" required value ="<?= ($dataEmpdetails !== null)? $dataEmpdetails['tpl']:""?>" name="tpl" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
+                <input type="text" required value ="<?= ($dataEmpDetails !== null)? $dataEmpDetails['tpl']:""?>" name="tpl" id="input_box" class="form-control border-top-0" placeholder="Isi disini"/>
                 <hr id="line">
             </div>
         </div>
@@ -39,9 +39,9 @@
                 <label>Gender</label>
                 <select name="jk" required id="input_box" class="form-control border-top-0">
                     <option disabled selected hidden value ="">Pilih Jenis Kelamin</option>
-                    <option value="P" <?= ($dataEmpdetails !== null && $dataEmpdetails['jk'] == 'P') ? "selected" :""?>>Cewek</option>
-                    <option value="L" <?= ($dataEmpdetails !== null && $dataEmpdetails['jk'] == 'L') ? "selected" :""?>>Cowok</option>
-                    <option value="M" <?= ($dataEmpdetails !== null && $dataEmpdetails['jk'] == 'M') ? "selected" :""?>>Lainnya</option>
+                    <option value="P" <?= ($dataEmpDetails !== null && $dataEmpDetails['jk'] == 'P') ? "selected" :""?>>Cewek</option>
+                    <option value="L" <?= ($dataEmpDetails !== null && $dataEmpDetails['jk'] == 'L') ? "selected" :""?>>Cowok</option>
+                    <option value="M" <?= ($dataEmpDetails !== null && $dataEmpDetails['jk'] == 'M') ? "selected" :""?>>Lainnya</option>
                 </select>
                 <hr id="line">
             </div>
@@ -67,9 +67,9 @@
                     <option disabled selected hidden value ="">Pilih Agama</option>
                     <?php
                         $agamaoptions = "";
-                        foreach($dataAgama as $agama){
+                        foreach($listAgama as $agama){
                             $agamaoptions .= 
-                            "<option value=\"".$agama['IdAgama'].(($dataEmpdetails !== null && $dataEmpdetails['IdAgama'] === $agama['IdAgama']) ? "\" selected>" : "\">"). $agama['agama']."</option>";
+                            "<option value=\"".$agama['IdAgama'].(($dataEmpDetails !== null && $dataEmpDetails['IdAgama'] === $agama['IdAgama']) ? "\" selected>" : "\">"). $agama['agama']."</option>";
                         }
                         echo $agamaoptions;
                     ?>

@@ -18,7 +18,7 @@ class HomeController extends Controller
         $idlogin = 644;
         return view('CvsayaHome',[
             'title' => 'CvSaya',
-            'topborderheight' => 79,
+            'topBorderHeight' => 79,
             'mt' => 67,
             'dataDokumen'=> FotoDiri::where('idlogin', $idlogin)->first(),
             'dataEmp'=> Employee::where('idlogin', $idlogin)->first(),

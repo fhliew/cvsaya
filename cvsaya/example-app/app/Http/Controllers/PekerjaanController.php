@@ -12,7 +12,7 @@ class PekerjaanController extends Controller
         $idlogin = 644;
         return view('CvsayaPekerjaan',[
             'title' => 'Pekerjaan',
-            'topborderheight' => 79,
+            'topBorderHeight' => 79,
             'dataEmp'=>  Employee::where('idLogin', $idlogin)
             ->first(),
             'dataGaji'=> KeinginanGaji::where('idlogin', $idlogin)

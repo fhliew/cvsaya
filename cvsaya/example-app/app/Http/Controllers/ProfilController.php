@@ -13,15 +13,15 @@ class ProfilController extends Controller
 {
     public static function show(){
         $idlogin = 644;
-        $dataEmpdet = EmployeeDetail::where('idlogin', $idlogin)->first();
+        $dataEmpDet = EmployeeDetail::where('idlogin', $idlogin)->first();
         return view('CvsayaProfil',[
             'title' => 'Profil',
-            'topborderheight' => 79,
+            'topBorderHeight' => 79,
             'dataEmp'=> Employee::where('idlogin', $idlogin)->first(),
-            'dataEmpdetails'=> $dataEmpdet,
+            'dataEmpDetails'=> $dataEmpDet,
             'dataGaji'=> KeinginanGaji::where('idlogin', $idlogin)->first(),
             'dataAdmin'=> Administrator::where('idlogin', $idlogin)->first(),
-            'dataAgama'=> Agama::all(),
+            'listAgama'=> Agama::all(),
             'mt' => 67
         ]);
     }
@@ -48,7 +48,7 @@ class ProfilController extends Controller
             else if($updateOrCreate > 0) return back()->withErrors(['msg' => "Record terupdate!!"]);       
             else return back()->withErrors(['msg' => "Error!!"]);  
         }
-       // return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
+        return back()->withErrors(['msg' => "Mohon semua Kolom diisi dengan benar!!"]);       
     }
     
     public static function updateAdmin($input){

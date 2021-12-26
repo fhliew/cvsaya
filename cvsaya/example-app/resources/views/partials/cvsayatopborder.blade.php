@@ -14,7 +14,7 @@
     </head>
     <body style="background-color : #12b5331a;">
 
-        <div class="col-sm-12" id="top-border"style="width:100%;height: <?= $topborderheight?>px; position:fixed; top:0; background-color:#12B533;z-index:1">
+        <div class="col-sm-12" id="top-border"style="width:100%;height: <?= $topBorderHeight?>px; position:fixed; top:0; background-color:#12B533;z-index:1">
             <div style="font-weight: bold; text-align: center; padding-top: 22px; color: white; font-size: 20px;"> <label id="top-border-title"><?= $title?></label></div>
             <a href="/" style="font-size: 21px; color: white;transform: scale(1, 1.5);float: left;margin-right:20px;margin-top:-36px;color: white;"><label>&#65308</label>
             </a>

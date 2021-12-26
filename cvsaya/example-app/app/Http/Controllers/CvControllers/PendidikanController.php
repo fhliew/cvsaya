@@ -17,8 +17,8 @@ class PendidikanController extends Controller
         
         return view('CvsayaCv',[
             'title' => 'Pendidikan',
-            'topborderheight' => 120,
-            'dataPendidikan'=> Pendidikan::where('idlogin', $idlogin)->get(),
+            'topBorderHeight' => 120,
+            'listPendidikan'=> Pendidikan::where('idlogin', $idlogin)->get(),
             'mt' => 100
         ]);
     }
@@ -27,9 +27,9 @@ class PendidikanController extends Controller
         $idlogin = 644;
         return view('CvsayaEditCv',[
             'title' => 'Pendidikan',
-            'topborderheight' => 120,
+            'topBorderHeight' => 120,
             'variables'=> $idpendidikan,
-            'dataPendidikan'=> Pendidikan::where('idpendidikan', self::getIdpendidikan($idpendidikan))->get(),
+            'listPendidikan'=> Pendidikan::where('idpendidikan', self::getIdpendidikan($idpendidikan))->get(),
             'mt' => 100
         ]);
     }

@@ -18,7 +18,7 @@ class DokumenController extends Controller
         
         return view('CvsayaDokumen',[
             'title' => 'Dokumen',
-            'topborderheight' => 79,
+            'topBorderHeight' => 79,
             'mt' => 67,
             'dataDokumen'=> FotoDiri::where('idlogin', $idlogin)->first()
         ]);

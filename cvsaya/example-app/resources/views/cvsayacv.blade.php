@@ -190,14 +190,14 @@
                         border-top: 0px solid transparent !important;
                         border-bottom: 0px solid transparent !important;\">";
 
-            foreach ($dataPendidikan as $r){
-                $encryptId = Crypt::encrypt($r['idpendidikan']);
+            foreach ($listPendidikan as $pendidikan){
+                $encryptId = Crypt::encrypt($pendidikan['idpendidikan']);
                 $table .="
                 <tr>
-                    <td style =\"text-align:center;\">".date('d/m/Y', strtotime($r['Tahun']))."</td>
-                    <td style =\"text-align:center;\">".date('d/m/Y', strtotime($r['sampai']))."</td>
-                    <td style =\"text-align:center;\">".$r['pendidikan']."</td> 
-                    <td style =\"text-align:center;\">".$r['asal']."</td> 
+                    <td style =\"text-align:center;\">".date('d/m/Y', strtotime($pendidikan['Tahun']))."</td>
+                    <td style =\"text-align:center;\">".date('d/m/Y', strtotime($pendidikan['sampai']))."</td>
+                    <td style =\"text-align:center;\">".$pendidikan['pendidikan']."</td> 
+                    <td style =\"text-align:center;\">".$pendidikan['asal']."</td> 
                     <td style =\"text-align:center;\">
                         <a href=\"pendidikan/aksi/".$encryptId."\">
                             Edit
@@ -229,13 +229,13 @@
                     box-shadow: none !important;
                     border-top: 0px solid transparent !important;
                     border-bottom: 0px solid transparent !important;\">";
-            foreach($dataPengalaman as $r){
-                $encryptId = Crypt::encrypt($r['idpengalaman']);
+            foreach($listPengalaman as $pengalaman){
+                $encryptId = Crypt::encrypt($pengalaman['idpengalaman']);
                 $table .="
                 <tr>
-                    <td style=\"text-align:center;\">".date('d/m/Y', strtotime($r['tahun']))."</td>
-                    <td style=\"text-align:center;\">".date('d/m/Y', strtotime($r['sampai']))."</td>
-                    <td style=\"text-align:center;\">".$r['perusahaan']."</td> 
+                    <td style=\"text-align:center;\">".date('d/m/Y', strtotime($pengalaman['tahun']))."</td>
+                    <td style=\"text-align:center;\">".date('d/m/Y', strtotime($pengalaman['sampai']))."</td>
+                    <td style=\"text-align:center;\">".$pengalaman['perusahaan']."</td> 
                     <td style=\"text-align:center;\">
                         <a href=\"pengalaman/aksi/".$encryptId."\">
                             Edit
@@ -267,11 +267,11 @@
                     border-top: 0px solid transparent !important;
                     border-bottom: 0px solid transparent !important;\">";
 
-            foreach($dataKualifikasi as $r){
-                $encryptId = Crypt::encrypt($r['IDkualifikasi']);
+            foreach($listKualifikasi as $kualifikasi){
+                $encryptId = Crypt::encrypt($kualifikasi['IDkualifikasi']);
                 $table .="
                 <tr>
-                    <td style=\"text-align:center;\">".$r['kualifikasi']."</td> 
+                    <td style=\"text-align:center;\">".$kualifikasi['kualifikasi']."</td> 
                     <td style=\"text-align:center;\">
                         <a href=\"kualifikasi/aksi/".$encryptId."\">
                             Edit

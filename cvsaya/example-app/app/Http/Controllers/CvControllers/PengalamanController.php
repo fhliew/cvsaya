@@ -17,8 +17,8 @@ class PengalamanController extends Controller
         
         return view('CvsayaCv',[
             'title' => 'Pengalaman',
-            'topborderheight' => 120,
-            'dataPengalaman'=> Pengalaman::where('idlogin', $idlogin)->get(),
+            'topBorderHeight' => 120,
+            'listPengalaman'=> Pengalaman::where('idlogin', $idlogin)->get(),
             'mt' => 100
         ]);
     }
@@ -26,9 +26,9 @@ class PengalamanController extends Controller
         $idlogin = 644;
         return view('CvsayaEditCv',[
             'title' => 'Pengalaman',
-            'topborderheight' => 120,
+            'topBorderHeight' => 120,
             'variables'=> $idpengalaman,
-            'dataPengalaman'=> Pengalaman::where('idpengalaman', self::getIdpengalaman($idpengalaman))->get(),
+            'listPengalaman'=> Pengalaman::where('idpengalaman', self::getIdpengalaman($idpengalaman))->get(),
             'mt' => 100
         ]);
     }

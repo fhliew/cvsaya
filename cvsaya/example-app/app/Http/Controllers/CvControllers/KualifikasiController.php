@@ -20,10 +20,10 @@ class KualifikasiController extends Controller
         
         return view('CvsayaCv',[
             'title' => 'Kualifikasi',
-            'topborderheight' => 120,
-            'dataPendidikan'=> Pendidikan::where('idlogin', $idlogin)->get(),
-            'dataPengalaman'=> Pengalaman::where('idlogin', $idlogin)->get(),
-            'dataKualifikasi'=> Kualifikasi::where('idlogin', $idlogin)->get(),
+            'topBorderHeight' => 120,
+            'listPendidikan'=> Pendidikan::where('idlogin', $idlogin)->get(),
+            'listPengalaman'=> Pengalaman::where('idlogin', $idlogin)->get(),
+            'listKualifikasi'=> Kualifikasi::where('idlogin', $idlogin)->get(),
             'mt' => 100
         ]);
     }
@@ -32,9 +32,9 @@ class KualifikasiController extends Controller
         $idlogin = 644;
         return view('CvsayaEditCv',[
             'title' => 'Kualifikasi',
-            'topborderheight' => 120,
+            'topBorderHeight' => 120,
             'variables'=> $IDkualifikasi,
-            'dataKualifikasi'=> Kualifikasi::where('IDkualifikasi', self::getIdkualifikasi($IDkualifikasi))->get(),
+            'listKualifikasi'=> Kualifikasi::where('IDkualifikasi', self::getIdkualifikasi($IDkualifikasi))->get(),
             'mt' => 100
         ]);
     }
