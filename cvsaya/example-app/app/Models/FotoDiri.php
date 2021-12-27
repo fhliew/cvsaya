@@ -31,21 +31,26 @@ class FotoDiri extends Model
     ];
 
     public function getGambarAttribute($value) {
+        if(empty($value)) return "";
         return env('ASSET_DOKUMEN') .$value;
     }
 
     public function getKiriAttribute($value){
+        if(empty($value)) return "";
         return env('ASSET_DOKUMEN') . $value;
     }
 
     public function getKananAttribute($value) {
+        if(empty($value)) return "";
         return env('ASSET_DOKUMEN') .$value;
     }
 
     public function getKtpAttribute($value){
+        if(empty($value)) return "";
         return env('ASSET_DOKUMEN') . $value;
     }
     public function getAktaNikahAttribute($value){
+        if(empty($value)) return "";
         return env('ASSET_DOKUMEN') . $this->attributes['akta_Nikah'];
     }
 }

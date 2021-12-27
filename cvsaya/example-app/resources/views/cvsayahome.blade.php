@@ -15,7 +15,6 @@
     <title>Document</title>
 </head>
 <body style="margin:0;background-color : #12b5331a;">
-
     <div style="background-color: #12B533;  color:white;padding-bottom: 95px; padding-top: 20px;font-weight:bold;"> 
         <div class="col-sm-12" style="height: 60px;">
             <div style ="text-align:center;"> <?= $title?> </div>
@@ -25,7 +24,7 @@
             <div class="container px-4 py-3">
                 <div class="row">
                     <div class="col-4">
-                        <img src=<?= ($dataDokumen !== null)? $dataDokumen['Gambar']: ""?>alt="logo" width="70" height="70" style="float:left; margin-left:15px;  border-radius: 5px;  object-fit: scale_down;">
+                        <img src="<?= ($dataDokumen !== null)? $dataDokumen['Gambar']: ""?>" alt="logo" width="70" height="70" style="float:left; margin-left:15px;  border-radius: 5px;  object-fit: scale_down;">
                         </img>
                     </div>
                     <div class="col-8">
@@ -44,11 +43,11 @@
                             <div class="row">
                                 <div class="col-7">
                                     <input type="text" class="form-control" style="background-color:transparent !important;
-                                    border:none !important;" placeholder="Status"/>
+                                    border:none !important;" placeholder="Status" readonly/>
                                 </div>
                                 <div class="col-5">
                                     <input type="text" class="form-control" style="background-color:transparent !important; text-align:right;
-                                    border:none !important; color:green; font-weight:bold;" value ="<?= $dataAdmin['blokir']?>"/>
+                                    border:none !important; color:green; font-weight:bold;" value ="<?= $dataAdmin['blokir']?>" readonly/>
                                 </div>
                             </div>
                         </div> 
@@ -56,7 +55,7 @@
                     </div>  
                 </div>
                 <div class="row" style="justify-content: center;">
-                    <!--<div class="col-3" id="homeicon"> 
+                    <div class="col-3" id="homeicon"> 
                         <a href=/attendance style="display:block;color:transparent;"> 
                             <div style ="background-color:white;border-radius: 10px;
                             padding-bottom: 25px; padding-top: 10px; padding-left: 20px; padding-right: 20px; margin-top: 20px; box-shadow: 3px 3px 4px #c1c1c1;">a</div>
@@ -83,8 +82,7 @@
                             padding-bottom: 25px; padding-top: 10px; padding-left: 20px; padding-right: 20px; margin-top: 20px; box-shadow: 3px 3px 4px #c1c1c1;">a</div>
                             <label style="font-size: 10px; color:black;"> Salary Slip </label>
                         </a>
-                    </div>-->
-
+                    </div>
                     <div class="col-3" id="homeicon"> 
                         <a href=/profil style="display:block;color:transparent;">  
                             <div style ="background-color:white;border-radius: 10px;

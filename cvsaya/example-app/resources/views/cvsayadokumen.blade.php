@@ -1,23 +1,34 @@
+<?php
+    if(isset($_POST['ktp'])) 
+?>
 @extends('partials/cvsayatopborder')
 
 @section('content')
-<form action="dokumen/submit" method="POST">
+@if($errors->any())
+    <?= "<script> alert('".$errors->first()."')</script>"?>
+@endif
+
+<form action="/dokumen/submit" method="POST">
     @csrf
     <div class="row gy-2" id="content-area">
         <div class="col-9">
             <label>Foto KTP</label>
             <div class="col-12" id="ktp">
-                <img src="<?= ($dataDokumen !== null) ? $dataDokumen['ktp']:""?>" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>
+                <?= (!empty($dataDokumen['ktp']))?
+                    '<img src="'.$dataDokumen['ktp'].'" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>':""
+                ?>
             </div>
         </div>
         <div class="col-3">
-            <input  class="custom-file-input" name="ktp" style="outline:none;width: 50px;" onchange="readfile(this,'#ktp')" type="file" accept="image/png, .jpeg, .jpg, image/gif"/>
+            <input class="custom-file-input" name="ktp" style="outline:none;width: 50px;" onchange="readfile(this,'#ktp')" type="file" accept="image/png, .jpeg, .jpg, image/gif" />
         </div>
 
         <div class="col-9">
             <label>Foto Selfie Depan </label>
             <div class="col-12" id="sdepan"> 
-                <img src="<?= ($dataDokumen!==null)? $dataDokumen['Gambar']:""?>" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>
+                <?= (!empty($dataDokumen['Gambar']))?
+                    '<img src="'.$dataDokumen['Gambar'].'" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>':""
+                ?>
             </div>
         </div>
         <div class="col-3">
@@ -27,7 +38,9 @@
         <div class="col-9">
             <label>Foto tampak kanan</label>
             <div class="col-12" id="tampakkanan"> 
-                <img src="<?= ($dataDokumen!==null)? $dataDokumen['kanan']:""?>" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>
+                <?= (!empty($dataDokumen['kanan']))?
+                    '<img src="'.$dataDokumen['kanan'].'" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>':""
+                ?>
             </div>
         </div>
         <div class="col-3">
@@ -37,21 +50,25 @@
         <div class="col-9">
             <label>Foto tampak kiri</label>
             <div class="col-12" id="tampakkiri"> 
-                <img src="<?= ($dataDokumen!==null)? $dataDokumen['kiri']:""?>" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>
+                <?= (!empty($dataDokumen['kiri']))?
+                    '<img src="'.$dataDokumen['kiri'].'" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>':""
+                ?>
             </div>
         </div>
         <div class="col-3">
-            <input class="custom-file-input" name="kiri" style="outline:none;width: 50px;" onchange="readfile(this,'#tampakkiri')" type="file" accept="image/*"/>
+            <input class="custom-file-input" name="kiri" style="outline:none;width: 50px;" onchange="readfile(this,'#tampakkiri')" type="file" accept="image/*"  />
         </div>
 
         <div class="col-9">
             <label>Akta Nikah</label>
             <div class="col-12" id="aktanikah"> 
-                <img src="<?= ($dataDokumen!==null)? $dataDokumen['aktaNikah']:""?>" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>
+                <?= (!empty($dataDokumen['akta_Nikah']))?
+                    '<img src="'.$dataDokumen['akta_Nikah'].'" alt="logo" width="200" height="200" style="float:left; border-radius: 5px;  object-fit: scale_down;"/>':""
+                ?>
             </div>
         </div>
         <div class="col-3">
-            <input class="custom-file-input" name="aktaNikah" style="outline:none;width: 50px;" onchange="readfile(this,'#aktanikah')" type="file" accept="image/*"/>
+            <input class="custom-file-input" name="akta_Nikah" style="outline:none;width: 50px;" onchange="readfile(this,'#aktanikah')" type="file" accept="image/*"  />
         </div>
         <div class="col-12">
             <label></label>               

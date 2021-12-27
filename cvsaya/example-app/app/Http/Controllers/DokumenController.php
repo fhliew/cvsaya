@@ -27,26 +27,29 @@ class DokumenController extends Controller
     public static function insert(Request $req){
         $idlogin = 644;
         $input = $req->input();
+        $fotoDiri = FotoDiri::where('idlogin',$idlogin)->first();
+        $rules = [];
+        $updateArrays = [];
+        
+        if (empty($fotoDiri->Gambar)) $rules['Gambar'] = 'required';
+        if (empty($fotoDiri->kanan)) $rules['kanan'] = 'required';
+        if (empty($fotoDiri->kiri)) $rules['kiri'] = 'required';
+        if (empty($fotoDiri->ktp)) $rules['ktp'] = 'required';
+        if (empty($fotoDiri->akta_Nikah)) $rules['akta_Nikah'] = 'required';
 
-        $validate = Validator::make($input,[
-            'Gambar' => 'required',
-            'kanan' => 'required',
-            'kiri' => 'required',
-            'ktp' => 'required',
-            'aktaNikah' => 'required'
-        ]);
+        if(!empty($input['Gambar'])) $updateArrays['Gambar'] = $input['Gambar'];
+        if(!empty($input['kanan'])) $updateArrays['kanan'] = $input['kanan'];
+        if(!empty($input['kiri'])) $updateArrays['kiri'] = $input['kiri'];
+        if(!empty($input['ktp'])) $updateArrays['ktp'] = $input['ktp'];
+        if(!empty($input['akta_Nikah'])) $updateArrays['akta_Nikah'] = $input['akta_Nikah'];
+
+        $validate = Validator::make($input, $rules);
         if(!$validate->fails()){
-            if(FotoDiri::where('idlogin',$idlogin)->count() > 0){
+            if(FotoDiri::where('idlogin',$idlogin)){
                 try{
                     FotoDiri::where(
                         'idlogin', $idlogin
-                    )->update([
-                        'Gambar'=> $input['Gambar'],
-                        'kanan'=> $input['kanan'],
-                        'kiri'=> $input['kiri'],
-                        'ktp'=> $input['ktp'],
-                        'akta_Nikah'=> $input['aktaNikah']
-                    ]);
+                    )->update($updateArrays);
                     return back()->withErrors(['msg' => "Record terupdate!!"]);
                 }
                 catch(Exception $e){
@@ -61,13 +64,13 @@ class DokumenController extends Controller
                     'kanan'=> $input['kanan'],
                     'kiri'=> $input['kiri'],
                     'ktp'=> $input['ktp'],
-                    'akta_Nikah'=> $input['aktaNikah'],
+                    'akta_Nikah'=> $input['akta_Nikah'],
                     'TglPost' => date("Y-m-d h:i:s")
                 ]);
                 if($fotoDiri->wasRecentlyCreated) return back()->withErrors(['msg' => "Record tersimpan!!"]);
                 else return back()->withErrors(['msg' => "Record tidak tersimpan!!"]);
             }
         }
-        return back()->withErrors(['msg' => "Data belum lengkap!!"]);       
+        return back()->withErrors(['msg' => "Data belum lengkap!!"]);  
     }
 }
